@@ -9,7 +9,7 @@ import os
 from queue import Queue
 import pandas as pd
 
-ticker_to_subscribe = ['BTC-USD', 'ETH_USD']
+ticker_to_subscribe = ['BTC-USD', 'ETH-USD', 'SHIB-USD']
 
 max_data_points = 100 # so dataframe does not explode in size
 # Queue for asynchronously storing ticker price and other info
@@ -21,6 +21,7 @@ market_data = pd.DataFrame(columns=['Spot', 'High', 'Low', 'ChangePct'], index=p
 # Function to handle WebSocket messages
 def handle_message(msg):
     msg = json.loads(msg)
+    print(msg)
     if 'events' in msg and msg['events'] and 'tickers' in msg['events'][0]:
         ticker = msg['events'][0]['tickers'][0]
         if 'price' in ticker and 'timestamp' in msg:
@@ -73,8 +74,10 @@ def main():
     # Open WebSocket connection and subscribe to ticker channels
     ws_client.open()
     # Subscribe to data stream of designated product market data
-    for ticker in ticker_to_subscribe:
-        ws_client.subscribe(product_ids=[ticker], channels=["ticker"])
+    #for ticker in ticker_to_subscribe:
+    #    ws_client.subscribe(product_ids=[ticker], channels=["ticker"])
+    print(ticker_to_subscribe)
+    ws_client.subscribe(product_ids=ticker_to_subscribe, channels=["ticker"])
 
     # Process market data
     while market_data.empty:
