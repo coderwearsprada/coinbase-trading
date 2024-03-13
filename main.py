@@ -16,7 +16,7 @@ max_data_points = 100 # so dataframe does not explode in size
 data_queue = Queue()
 
 # Market Data: Spot price, last 24 hour high, last 24 hour low, percent of change in the last 24 hours
-market_data = pd.DataFrame(columns=['Spot', 'High', 'Low', 'ChangePct'], index=pd.DatetimeIndex([]))  # Initialize an empty DataFrame
+market_data = pd.DataFrame(columns=['Spot', 'High', 'Low', 'ChangePct'], index=pd.DatetimeIndex([]))
 
 # Function to handle WebSocket messages
 def handle_message(msg):
@@ -46,7 +46,7 @@ def get_data():
         changes.append(float(change))
 
     if timestamps and prices:
-        temp = pd.DataFrame(
+        new_md = pd.DataFrame(
         {
             'Ticker': products,
             'Spot': prices,
@@ -54,8 +54,8 @@ def get_data():
             'Low': low_24,
             'ChangePct': changes
         }, index=timestamps)
-        print(temp)
-        return temp
+        print(new_md)
+        return new_md
     else:
         return market_data
 
