@@ -2,10 +2,10 @@
 A simple framework for trading crypto with coinbase
 
 ## API credential
-First create your own trading API credential on Coinbase. Copy the API key and Secret key. Store these two keys in .env file in a format of:
+First create your own trading API credential on Coinbase. Copy the API key and Secret key. Store these two keys in .env file in a format of: \n
 
-API_KEY = $YOUR_API_KEY_ON_COINBASE
-SECRET_KEY = $YOUR_SECRET_KEY_ON_COINBASE
+API_KEY = $YOUR_API_KEY_ON_COINBASE \n
+SECRET_KEY = $YOUR_SECRET_KEY_ON_COINBASE \n
 
 ## Subscribe to market data with predefined tickert set
 In main.py, ticker_to_subscribe defines the set of ticker you want to subscribe market data to. Enumerate all tickers you want to subscribe
